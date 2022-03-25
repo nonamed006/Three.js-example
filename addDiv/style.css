@@ -1,0 +1,56 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+.btnPosition{
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btnBox{
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(255,255,255,0.3);
+    text-align: center;
+    
+}
+.btnStyle{
+    display: inline-block;
+    margin: 5px 0px 5px 0px;
+    width: 250px;
+    height: 30px;
+    border: 1px solid rgb(66, 62, 62);
+    cursor: pointer;
+}
+a{
+    text-decoration-line : none;
+    text-decoration : none;
+    color: black;
+}
+#info {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display:block;
+}
+.controlBox{
+    font-size: xx-large;
+    display: inline-block;
+    width: 600px;
+    height: 50px;
+    background-color: rgba(255,255,255,0.3);
+    
+}
+.controlStyle{
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
