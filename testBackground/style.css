@@ -1,0 +1,67 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#myCanvas {
+    width: 100%;
+    height: 100px;
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  .annotation {
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin-left: 15px;
+    margin-top: 15px;
+    padding: 10px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+ 
+  .annotation1:before {
+    content: "";
+    position: absolute;
+    left: 45px;
+    width: 2px;
+    height: 200px;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .annotation1:before {
+    content: "2";
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  #monitor { 
+	position: fixed;
+	bottom: 0;
+    right: 0;
+	color:white;
+	padding:5px;
+	text-align:right;
+	font-size:10pt;
+}
