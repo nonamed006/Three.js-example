@@ -7,12 +7,12 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const scene = new THREE.Scene();
 
 // 오브젝트 생성 -> 이거 사실 구체인데 크기 늘려서 구체 안에 카메라가 있어서 360도 배경처럼 보이는거 -> 배경은 텍스처로 입혔음
-const geometry = new THREE.SphereGeometry(500, 60, 40);
+const geometry = new THREE.SphereGeometry(1000, 40, 20);
 // invert the geometry on the x-axis so that all of the faces point inward
 geometry.scale(-1, 1, 1);
 
 // 생성한 오브젝트에 텍스쳐 입히기(사진이나 질감 등)
-const texture = new THREE.TextureLoader().load('GS__0963.JPG');
+const texture = new THREE.TextureLoader().load('eximg02.jpg');
 const material = new THREE.MeshBasicMaterial({ map: texture });
 
 // 씬에 추가할거 생성

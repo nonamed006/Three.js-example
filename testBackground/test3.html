@@ -22,7 +22,7 @@
 		const annotations = [];
 		annotations.push({ text: 'annotation1', x: 0, y: -2, z: 0 });
 		annotations.push({ text: 'annotation2', x: 20, y: -2, z: -50 });
-		annotations.push({ text: 'annotation3', x: -100, y: -1, z: -70 });
+		annotations.push({ text: 'annotation3', x: -90, y: -1, z: -70 });
 		// Create the annotation elements
 		annotations.forEach((ann, index) => {
 			const elAnn = document.createElement("div");
@@ -66,20 +66,31 @@
 		}
 
 		// ================ 클릭 이벤트
-		const anno1 = document.getElementById('annotation0');
-		anno1.addEventListener('click', (e) => {
-			moveCam(5, 5, 7, 0, 0, 0);
-		})
+		window.onload = function () {
+			const anno1 = document.getElementById('annotation00');
+			anno1.addEventListener('click', (e) => {
+				moveCam(5, 5, 7, 0, 0, 0);
+			});
 
-		const anno2 = document.getElementById('annotation1');
-		anno2.addEventListener('click', (e) => {
-			moveCam(30, 5, -40, 20, -3, -50);
-		})
+			const anno2 = document.getElementById('annotation01');
+			anno2.addEventListener('click', (e) => {
+				moveCam(30, 5, -40, 20, -3, -50);
+			});
 
-		const anno3 = document.getElementById('annotation2');
-		anno3.addEventListener('click', (e) => {
-			moveCam(-100, 5, -50, -100, -3, -70);
-		})
+			const anno3 = document.getElementById('annotation02');
+			anno3.addEventListener('click', (e) => {
+				moveCam(-100, 5, -50, -100, -3, -70);
+			});
+
+			let start = document.getElementById('start');
+			start.addEventListener('click', function () {
+				mesh.rotation.y += 1;
+			});
+			let back = document.getElementById('back');
+			back.addEventListener('click', function () {
+				mesh.rotation.y -= 1;
+			});
+		}
 		function init() {
 			// Camera
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 2, 2000);
@@ -91,13 +102,26 @@
 			scene = new THREE.Scene();
 			scene.add(axesHelper);
 
+			// 오브젝트 생성 -> 이거 사실 구체인데 크기 늘려서 구체 안에 카메라가 있어서 360도 배경처럼 보이는거 -> 배경은 텍스처로 입혔음
+			const geometry = new THREE.SphereGeometry(1500, 50, 50);
+			// invert the geometry on the x-axis so that all of the faces point inward
+			geometry.scale(-1, 1, 1);
+
+			// 생성한 오브젝트에 텍스쳐 입히기(사진이나 질감 등)
+			const texture = new THREE.TextureLoader().load('eximg02.jpg');
+			const material = new THREE.MeshBasicMaterial({ map: texture });
+
+			// 씬에 추가할거 생성
+			mesh = new THREE.Mesh(geometry, material);
+			scene.add(mesh);
+
 			// 하늘 
 			const skyGeometry = new THREE.SphereGeometry(500, 60, 40);
 			const skyMaterial = new THREE.MeshBasicMaterial();
 			skyMaterial.color = new THREE.Color('#D4F4FA');
 			const sky = new THREE.Mesh(skyGeometry, skyMaterial);
-			skyGeometry.scale(-1, 1, 1);
-			scene.add(sky);
+			//skyGeometry.scale(-1, 1, 1);
+			//scene.add(sky);
 
 			// 바닥
 			const floor = new THREE.Mesh(
@@ -107,7 +131,7 @@
 			floor.rotateX(- Math.PI / 2);
 			floor.position.set(0, -15, 0);
 
-			scene.add(floor);
+			//scene.add(floor);
 
 			// 라벨 테스트시킬 오브젝트
 			const labeltest = new THREE.Mesh(
@@ -208,6 +232,26 @@
 		}
 
 	</script>
+	<div class="btnPosition">
+		<div class="btnBox">
+			<div id="menuHeader">TITLE</div>
+			<div class="btnStyle" id="annotation00">
+				<a>annotation1</a>
+			</div>
+			<div class="btnStyle" id="annotation01">
+				<a>annotation2</a>
+			</div>
+			<div class="btnStyle" id="annotation02">
+				<a>annotation3</a>
+			</div>
+		</div>
+	</div>
+	<div id="info">
+		<div class="controlBox">
+			<div class="controlStyle" id="back">◀</div>
+			<div class="controlStyle" id="start">▶</div>
+		</div>
+	</div>
 </body>
 
 </html>

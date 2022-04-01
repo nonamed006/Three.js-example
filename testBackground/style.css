@@ -70,3 +70,66 @@ body{
 	text-align:right;
 	font-size:10pt;
 }
+
+/* div 왼쪽 메뉴 스타일*/
+
+.btnPosition{
+  position: absolute;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btnBox{
+  width: 300px;
+  height: 100vh;
+  padding-top: 50px;
+  background-color: rgba(255,255,255,0.3);
+  text-align: center;
+}
+
+.btnStyle{
+  display: inline-block;
+  margin: 5px 0px 5px 0px;
+  width: 250px;
+  height: 30px;
+  border: 1px solid rgb(66, 62, 62);
+  cursor: pointer;
+}
+#menuHeader{
+  font-size: 30px;
+  padding-bottom: 10px;
+}
+a{
+  text-decoration-line : none;
+  text-decoration : none;
+  color: black;
+}
+
+/* 하단 컨트롤 바 스타일*/
+#info {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+	z-index: 100;
+	display:block;
+}
+.controlBox{
+    font-size: xx-large;
+    display: inline-block;
+    width: 600px;
+    height: 50px;
+    background-color: rgba(255,255,255,0.3);
+    
+}
+.controlStyle{
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
