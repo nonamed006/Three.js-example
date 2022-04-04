@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="//sinanbolel.firebaseapp.com/cdn/pano-2.0.0.min.js"></script>
+</head>
+
+<body>
+	<span id="container"></span>
+	<script src="https://pchen66.github.io/js/three/three.min.js"></script>
+	<script src="https://pchen66.github.io/js/panolens/panolens.min.js"></script>
+	<script>
+		
+		var panorama, viewer, container, infospot;
+
+		container = document.querySelector("#container");
+		panorama = new PANOLENS.ImagePanorama('asset/testIMG.jpg');
+		console.log(panorama);
+		viewer = new PANOLENS.Viewer({ 
+			output: 'console',
+			container: container
+		});
+		viewer.add(panorama);
+		viewer.renderer.sortObjects = true;
+	</script>
+</body>
+
+</html>

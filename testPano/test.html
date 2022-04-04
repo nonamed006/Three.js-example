@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>testPano</title>
+	<script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+	<meta name="description" content="360&deg; Image - A-Frame">
+</head>
+
+<body>
+	<script>
+		window.addEventListener("wheel", (event) => {
+			// small increments for smoother zooming
+			const delta = event.wheelDelta / 120 / 10;
+			var mycam = document.getElementById("cam").getAttribute("camera");
+			var finalZoom =
+				document.getElementById("cam").getAttribute("camera").zoom + delta;
+
+			// limiting the zoom
+			if (finalZoom < 0.5) finalZoom = 0.5;
+			if (finalZoom > 2) finalZoom = 2;
+			mycam.zoom = finalZoom;
+
+			document.getElementById("cam").setAttribute("camera", mycam);
+		});
+	</script>
+	<a-scene>
+		<a-sky src="asset/testIMG.jpg" rotation="0 -130 0"></a-sky>
+		<a-entity id="cam" camera="zoom: 1" look-controls="reverseMouseDrag: true" position="0 0 0">
+		</a-entity>
+	</a-scene>
+</body>
+
+</html>

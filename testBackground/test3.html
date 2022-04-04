@@ -8,11 +8,13 @@
 </head>
 
 <body>
+	<script src="js/three.min.js"></script>
 	<script src="js/tweenjs.js"></script>
+	<script src="js/hotspots.js"></script>
 	<canvas id="myCanvas"></canvas>
 	<div id="monitor"></div>
 	<script type="module">
-		import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
+		//import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js";
 		import { OrbitControls } from "https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js";
 		"use strict";
 		const canvas = document.getElementById("myCanvas");
@@ -42,6 +44,14 @@
 		const annotation = document.querySelector(".annotation");
 		// 3개의 축을 시각화 해주는 객체 (x - 빨강, y - 녹색, z - 파랑)
 		const axesHelper = new THREE.AxesHelper(5);
+
+		// set render auto clear false.
+		//renderer.autoClear = false;
+
+		// initialize global configuration
+		THREE.threeDataConfig = { renderer: renderer, camera: camera };
+
+
 		init();
 		animate();
 
@@ -114,6 +124,18 @@
 			// 씬에 추가할거 생성
 			mesh = new THREE.Mesh(geometry, material);
 			scene.add(mesh);
+
+			// hotspot 라이브러리 테스트 =================================================================================
+			// new hotspot instance
+			hotspot = new THREE.Hotspot('ping.png', 360, 180);
+			hotspot.position.set(10, 0, 0); // set 3D hotspot position.
+
+			// set pivot point.
+			hotspot.pivotPoint = THREE.HotspotPivotPoints.CENTER;
+			hotspot.onClick = function () {
+				alert("click");
+			};
+
 
 			// 하늘 
 			const skyGeometry = new THREE.SphereGeometry(500, 60, 40);
@@ -195,7 +217,15 @@
 			render();
 		}
 		function render() {
+			requestAnimationFrame(update);
+			// hotspot instance update.
+			hotspot.update();
+
+			// first render main scene
+			renderer.clear();
 			renderer.render(scene, camera);
+			// call hotspots update
+			THREE.HotspotGlobals.update();
 			// 현재 바라보고 있는 시점 좌표 표시
 			document.getElementById('monitor').innerText =
 				camera.position.x.toFixed(1) + ", " +
